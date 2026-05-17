@@ -1,0 +1,49 @@
+[project]
+name = "matrix-sae"
+version = "0.1.0"
+description = "Sparse autoencoders for matrix-valued recurrent states in GatedDeltaNet"
+requires-python = ">=3.10"
+authors = [
+    { name = "Jack Young" },
+]
+dependencies = [
+    "torch>=2.0",
+    "transformers>=5.0",
+    "numpy",
+    "tqdm",
+    "matplotlib",
+    "datasets",
+    "h5py",
+    "scipy",
+    "scikit-learn",
+]
+
+[project.optional-dependencies]
+cloud = ["modal"]
+logging = ["wandb"]
+
+[build-system]
+requires = ["setuptools>=64", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+# Explicit package discovery to avoid setuptools' "Multiple top-level packages
+# discovered in a flat-layout" error. The repo has several top-level code
+# directories (core/, experiments/, scripts/, deploy/); we expose only the
+# Python importable packages.
+py-modules = ["sae", "split_utils", "evaluate_downstream", "circuit_ablation"]
+
+[tool.setuptools.packages.find]
+include = ["core", "experiments", "experiments.*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+norecursedirs = [
+    ".claude",
+    ".git",
+    ".mypy_cache",
+    ".pytest_cache",
+    ".ruff_cache",
+    "paper-9pager/_archive",
+    "release/github-repo",
+]

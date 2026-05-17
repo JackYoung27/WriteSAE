@@ -1,0 +1,21 @@
+.DS_Store
+**/.DS_Store
+
+__pycache__/
+**/__pycache__/
+*.py[cod]
+*$py.class
+
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.venv/
+venv/
+.ipynb_checkpoints/
+
+# Local credentials and rendered deployment manifests.
+.env
+*.env
+deploy/akash/.env
+deploy/akash/**/*.rendered.yaml
+deploy/akash/runtime_snapshot/
